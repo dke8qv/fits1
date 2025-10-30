@@ -18,3 +18,40 @@ You are welcome to modify the provided code for your projects and to use other p
 * TH1hist2Numpy.ipynb : an example for converting a ROOT histogram to numpy arrays
 
 Note that from ROOT you can type ```new TBrowser()``` or in Python r.TBrowser() to get a graphical browser that allows you to look at what's contained in the TFiles.
+
+
+#Exercise 1 discussion 
+The 1σ width of the fitted mean distribution is about 0.3586, while the typical uncertainty reported by the fit is about 0.3257. 
+These values agree well, meaning the spread of the fitted means across repeated experiments matches the uncertainty that the fit itself predicts. 
+This is exactly what we expect statistically, so the fit uncertainties appear reasonable and correctly estimated.
+
+#Exercise 2 discussion
+Even though the χ² and NLL fitted mean values are both centered near the correct value of 50, the spread of the fitted means reveals the difference. 
+For 10 events per fit, the expected statistical variation is σ(μ) ≈ 3.16. 
+The NLL fits produce a spread consistent with this expectation (≈ 3.13), while the χ² fits give a significantly larger spread (≈ 4.27), indicating that the χ² method becomes unreliable at low statistics.
+
+
+#Exercise 3 discussion
+NLL(data) = 38.64
+p-value = 0.44
+This is exactly what we expect when the model describes the data well — a p-value somewhere around 0.3–0.7 is ideal.
+
+
+#result4.pdf discussion
+I scanned the likelihood and chi-square values as a function of the mean parameter,
+while re-optimizing the remaining fit parameters at each point. For the likelihood fit, plotted Δ(-2 ln L), and for the chi-square fit, we plotted Δχ². 
+
+For a single-parameter fit, the 1σ statistical uncertainty corresponds to:
+Δ(-2 ln L) = 1   (likelihood method)
+Δχ² = 1          (chi-square method)
+
+From the NLL scan of histo25.root, the best-fit mean was found to be:
+    μ = 53.42 ± 2.09
+
+From the χ² scan of histo1k.root, the best-fit mean was found to be:
+    μ = 49.78 ± 0.33
+
+These uncertainties are consistent with the standard interpretation that the parameter
+range where Δ(-2 ln L) = 1 or Δχ² = 1 represents the 68% confidence interval (1σ).
+Thus, the fitter-reported uncertainties agree with the uncertainties extracted from
+the manual likelihood and chi-square scans.
